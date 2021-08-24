@@ -1,46 +1,48 @@
 import random
-import deck
 
-class Card():
+class Card:
+    def __init__(self, value:int=None, suit:str=None, deck:classmethod=None) -> None:
+        self.__valid_suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+        self.deck = deck
 
-    global suits    
-    suits = ['Spades', 'Hearts', 'Clubs', 'Diamonds']
+        if self.deck is None:
+            if value is None and suit is None:
+                value, suit = self.__generate_card()
+            elif not self.__validate_params(value, suit):
+                raise InvalidCardParameters
 
-    def __init__(self, value:int=-1, suit:str=None) -> None:
-        card_conversion = {
-        1: "Ace",
-        11: "Jack",
-        12: "Queen",
-        13: "King"
-        }
-
-
-        self.value = self.generate_value() if not 1 <= value <= 13 else value
-        if suit not in suits or suit is None:
-            self.suit = self.generate_suit()
-        else:
-            self.suit = suit
-        self.converted_value = (
-            card_conversion[self.value]
-            if self.value in card_conversion
-            else self.value
-        )
-
-        self.name = f"{self.converted_value} of {self.suit}"
-
+        self.suit = suit
+        self.value = value
+        self.rank = self.__convert_rank()
+        self.name = f"{self.rank} of {self.suit}"
+        self.img = self.__generate_img()
+    
     def __str__(self) -> str:
-        return self.name    
-    def generate_value(self) -> int:
-        return random.randint(1,12)
+        return self.name
+    
+    def __validate_params(self, value, suit) -> bool:
+        return 1 <= value <= 13 and suit in self.__valid_suits
 
-    def generate_suit(self) -> str:
-        return random.choice(suits)
+    def __generate_card(self):
+        value = random.randint(1,13)
+        suit = random.choice(self.__valid_suits)
+        return value, suit
+    
+    def __convert_rank(self) -> str:
+        conversion_dict = {1: "Ace", 11: "Jack", 12: "Queen", 13: "King"}
+        if self.value in conversion_dict:
+            return conversion_dict[self.value]
+        else:
+            return self.value
 
+    def __generate_img(self) -> str:
+        """
+        Creates an ASCII image of the playing card object.
+        """
+        suit_emojis = {'Hearts': "♥", 'Diamonds': "♦", 'Clubs': "♣", 'Spades': "♠"}
+        suit = suit_emojis[self.suit]
+        rank = str(self.rank)[0]
+        return f"*- - -*\n|{suit}    |\n|  {rank}  |\n|   {suit} |\n*- - -*"
 
-if __name__ == "__main__":
-    newDeck = deck.Deck()
-    newCard = newDeck.draw_card()
-    newCard2 = newDeck.draw_card()
-    newCard3 = newDeck.draw_card()
-    print(newCard, newCard2, newCard3)
-    print(newDeck.drawn_cards)
+class InvalidCardParameters(Exception):
+    pass
