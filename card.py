@@ -47,5 +47,23 @@ class Card:
         rank = str(self.rank)[0]
         return f"*- - -*\n|{suit}    |\n|  {rank}  |\n|   {suit} |\n*- - -*"
 
+    def __gt__(self, other:object) -> bool:
+        return self.value > other.value
+    
+    def __lt__(self, other:object) -> bool:
+        return self.value < other.value
+    
+    def __ge__(self, other:object) -> bool:
+        return self.value >= other.value
+    
+    def __le__(self, other:object) -> bool:
+        return self.value <= other.value
+    
+    def __eq__(self, other: object) -> bool:
+        return self.value == other.value
+    
+    def __ne__(self, other: object) -> bool:
+        return self.value != other.value
+    
 class InvalidCardParameters(Exception):
     pass
