@@ -24,6 +24,10 @@ class Deck():
         self.drawn_cards[drawn_card.suit].append(drawn_card.value)
         return drawn_card
 
+    def shuffle(self) -> None:
+        self.cards = []
+        self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
+
     def __generate_card_values(self):
         valid = False
         while not valid:
