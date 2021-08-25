@@ -4,7 +4,7 @@ import card
 class Deck():
     
     def __init__(self) -> None:
-        self.drawn_cards = {'Hearts': [], 'Diamonds': [], 'Clubs': [], 'Spades': []}
+        self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
         self.cards = []
         self.drawn = 0
         self.remaining = 52
@@ -27,8 +27,7 @@ class Deck():
     def __generate_card_values(self):
         valid = False
         while not valid:
-            valid_suits = list(self.drawn_cards.keys())
-            suit = random.choice(valid_suits)
+            suit = random.randint(0,3)
             value = random.randint(1,13)
             if value not in self.drawn_cards[suit]:
                 valid = True
