@@ -1,6 +1,6 @@
-from playingcards import card as c
+from playingcards import Card
 
-card = c.Card(seed="xyz")
+card = Card(seed="xyz")
 
 def test_value():
     assert card.value == 5
