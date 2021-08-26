@@ -1,4 +1,4 @@
-# [playingcards.py](https://github.com/Prodxgy/playingcards.py)
+# playingcards&#46;py
 
 [![MIT License](https://img.shields.io/github/license/Prodxgy/playingcards.py?label=license)](https://github.com/Prodxgy/playingcards.py/blob/master/LICENSE)
 [![PyPi Python Versions](https://img.shields.io/pypi/pyversions/Django)]()
