@@ -1,6 +1,5 @@
 import random
-import card
-
+from . import card
 class Deck():
     
     def __init__(self, seed=None) -> None:
@@ -12,8 +11,6 @@ class Deck():
             random.seed(seed)
 
     def draw_card(self) -> card.Card:
-        # TODO add a way to keep track of drawn cards
-        # update card counts
         if self.remaining == 0:
             raise MaxCardsDrawn
 
