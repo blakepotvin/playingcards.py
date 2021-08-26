@@ -54,13 +54,13 @@ player_card_3 = Card(seed="xyz")
 
 ### Class Attributes
 
-* `Deck` Attributes
+* **Deck** Attributes
   * drawn_cards `dict` - Returns a dict of the values that were drawn from each corresponding suit.
   * cards `list` - Returns a list containing the class objects of each drawn card.
   * drawn `int` - Returns an integer of the amount of cards that have been drawn.
   * remaining `int` - Returns an integer amount of the remaining cards that can be drawn.
 
-* `Card` Attributes
+* **Card** Attributes
   * deck `Deck` - Returns a Deck object if the card was drawn from a deck. *Default: None*.
   * suit `int` - Returns an integer that corresponds with the card's suit.
   * suit_name `str` - Returns a string containing the converted suit name.
