@@ -101,15 +101,18 @@ player_card = Card(value=11, suit=1)
 
 
 print(player_card)
-print(player_card.value)
-print(player_card.suit_name)
-print(player_card.rank)
-print(player_card.img)
-
 >> Jack of Clubs
+
+print(player_card.value)
 >> 11
+
+print(player_card.suit_name)
 >> Clubs
+
+print(player_card.rank)
 >> Jack
+
+print(player_card.img)
 >> *- - -*
    | ♣   |
    |  J  |
