@@ -101,15 +101,18 @@ player_card = Card(value=11, suit=1)
 
 
 print(player_card)
-print(player_card.value)
-print(player_card.suit_name)
-print(player_card.rank)
-print(player_card.img)
-
 >> Jack of Clubs
+
+print(player_card.value)
 >> 11
+
+print(player_card.suit_name)
 >> Clubs
+
+print(player_card.rank)
 >> Jack
+
+print(player_card.img)
 >> *- - -*
    | ♣   |
    |  J  |
@@ -129,8 +132,9 @@ card_2 = Card(value=12, suit=2)
 card_3 = Card(value=8, suit=3)
 
 print(card_1 < card_2)
-print(card_3 == card_1) # Returns True even if the suit is different
+>> True
 
+print(card_3 == card_1) # Returns True even if the suit is different
 >> True
->> True
+
 ```
