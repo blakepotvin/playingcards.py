@@ -1,7 +1,7 @@
 import random
 
 class Card:
-    def __init__(self, value:int=None, suit:int=None, deck:classmethod=None) -> None:
+    def __init__(self, value:int=None, suit:int=None, deck:classmethod=None, seed=None) -> None:
         self.deck = deck
         if self.deck is None:
             if value is None and suit is None:
@@ -15,6 +15,9 @@ class Card:
         self.rank = self.__convert_rank()
         self.name = f"{self.rank} of {self.suit_name}"
         self.img = self.__generate_img()
+        
+        if seed is not None:
+            random.seed(seed)
     
     def __str__(self) -> str:
         return self.name

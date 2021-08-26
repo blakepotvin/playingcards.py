@@ -3,11 +3,13 @@ import card
 
 class Deck():
     
-    def __init__(self) -> None:
+    def __init__(self, seed=None) -> None:
         self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
         self.cards = []
         self.drawn = 0
         self.remaining = 52
+        if seed is not None:
+            random.seed(seed)
 
     def draw_card(self) -> card.Card:
         # TODO add a way to keep track of drawn cards
