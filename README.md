@@ -1,7 +1,7 @@
 # playingcards&#46;py
 
-[![MIT License](https://img.shields.io/github/license/Prodxgy/playingcards.py?label=license)](https://github.com/Prodxgy/playingcards.py/blob/master/LICENSE)
-[![PyPi Python Versions](https://img.shields.io/pypi/pyversions/Django)]()
+[![MIT License](https://img.shields.io/pypi/l/playingcards.py?style=for-the-badge)](https://github.com/Prodxgy/playingcards.py/blob/master/LICENSE)
+[![PyPi Python Versions](https://img.shields.io/pypi/pyversions/playingcards.py?style=for-the-badge)]()
 
 
 An Advanced Python Playing Card Module that makes creating playing card games simple and easy!
@@ -16,7 +16,7 @@ An Advanced Python Playing Card Module that makes creating playing card games si
 ## Installation
 >*Requires Python 3.6 and above*
 
-You can install the module from [PyPI]() or by using pip.
+You can install the module from [PyPI](https://pypi.org/project/playingcards.py/) or by using pip.
 
 ```sh
 # Linux/MacOS
