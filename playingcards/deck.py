@@ -17,6 +17,8 @@ class Deck():
             value, suit = self.__generate_card_values()
         elif not 1 <= value <= 13 and not 1 <= suit <= 3:
             raise card.InvalidCardParameters
+        elif value in self.drawn_cards[suit]:
+            raise card.InvalidCardParameters
         self.drawn += 1
         self.remaining -= 1
         # draw card and append
