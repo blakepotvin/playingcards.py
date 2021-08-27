@@ -1,6 +1,6 @@
-from playingcards import deck as d
+from playingcards import Deck
 
-deck = d.Deck(seed="xyz")
+deck = Deck(seed="xyz")
 card = deck.draw_card()
 
 """
