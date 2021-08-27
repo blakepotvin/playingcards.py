@@ -10,14 +10,16 @@ class Deck():
         if seed is not None:
             random.seed(seed)
 
-    def draw_card(self) -> card.Card:
+    def draw_card(self, value:int=None, suit:int=None) -> card.Card:
         if self.remaining == 0:
             raise MaxCardsDrawn
-
+        if value is None and suit is None:
+            value, suit = self.__generate_card_values()
+        elif not 1 <= value <= 13 and not 1 <= suit <= 3:
+            raise card.InvalidCardParameters
         self.drawn += 1
         self.remaining -= 1
         # draw card and append
-        value, suit = self.__generate_card_values()
         drawn_card = card.Card(value=value, suit=suit, deck=self)
         self.cards.append(drawn_card)
         self.drawn_cards[drawn_card.suit].append(drawn_card.value)
