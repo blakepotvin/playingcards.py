@@ -7,6 +7,7 @@
 An Advanced Python Playing Card Module that makes creating playing card games simple and easy!
 
 ## Features
+* Easy to Understand Class Objects
 * ASCII Card Images
 * Card Comparisons
 * Duplicate Prevention within Decks
