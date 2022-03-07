@@ -2,11 +2,18 @@ import random
 from . import card
 class Deck():
     
-    def __init__(self) -> None:
+    def __init__(self, deck:list = None) -> None:
         self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
-        self.cards = []
+        if deck is None:
+            self.cards = self.__generate_deck()
         self.drawn = 0
         self.remaining = 52
+
+    def __generate_deck(self) -> list:
+        deck = []
+        for suit in range(4):
+            deck.extend(card.Card(value=value, suit=suit) for value in range(1,14))
+        return deck
 
     def draw_card(self, value:int=None, suit:int=None) -> card.Card:
         if self.remaining == 0:
