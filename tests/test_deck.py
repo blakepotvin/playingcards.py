@@ -1,6 +1,9 @@
 from playingcards import Deck
+from random import seed
 
-deck = Deck(seed="xyz")
+seed("xyz")
+
+deck = Deck()
 card_1 = deck.draw_card()
 card_2 = deck.draw_card(value=11, suit=3)
 

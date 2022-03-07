@@ -1,6 +1,9 @@
 from playingcards import Card
+from random import seed
 
-card = Card(seed="xyz")
+seed("xyz")
+
+card = Card()
 
 def test_value():
     assert card.value == 5
