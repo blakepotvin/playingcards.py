@@ -30,10 +30,7 @@ class Card:
     
     def __convert_rank(self) -> str:
         conversion_dict = {1: "Ace", 11: "Jack", 12: "Queen", 13: "King"}
-        if self.value in conversion_dict:
-            return conversion_dict[self.value]
-        else:
-            return self.value
+        return conversion_dict.get(self.value, self.value)
 
     def __convert_suit(self) -> str:
         suit_conversion = {0: "Spades", 1: "Clubs", 2: "Hearts", 3: "Diamonds"}
