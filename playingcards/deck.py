@@ -2,13 +2,11 @@ import random
 from . import card
 class Deck():
     
-    def __init__(self, seed=None) -> None:
+    def __init__(self) -> None:
         self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
         self.cards = []
         self.drawn = 0
         self.remaining = 52
-        if seed is not None:
-            random.seed(seed)
 
     def draw_card(self, value:int=None, suit:int=None) -> card.Card:
         if self.remaining == 0:

@@ -1,10 +1,7 @@
 import random
 
 class Card:
-    def __init__(self, value:int=None, suit:int=None, deck:classmethod=None, seed=None) -> None:
-        if seed is not None:
-            random.seed(seed)
-            
+    def __init__(self, value:int=None, suit:int=None, deck:classmethod=None) -> None:
         self.deck = deck
         if self.deck is None:
             if value is None and suit is None:
