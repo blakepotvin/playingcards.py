@@ -3,8 +3,9 @@ from . import card
 class Deck():
     
     def __init__(self, deck:list = None) -> None:
-        self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
-        if deck is None:
+        if deck is not None and self.__validate_initial_deck(deck):
+            self.cards = deck
+        else:
             self.cards = self.__generate_deck()
         self.drawn = 0
         self.remaining = 52
@@ -14,6 +15,9 @@ class Deck():
         for suit in range(4):
             deck.extend(card.Card(value=value, suit=suit) for value in range(1,14))
         return deck
+    
+    def __validate_initial_deck(self, deck) -> bool:
+        return all(isinstance(card, card.Card) for card in deck)
 
     def draw_card(self, value:int=None, suit:int=None) -> card.Card:
         if self.remaining == 0:
