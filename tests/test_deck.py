@@ -45,3 +45,8 @@ def test_img():
 
 def test_deck():
     assert card_1.deck is deck
+
+def test_order_cards():
+    deck.order_cards()
+    assert deck.cards[0].value == 1
+    assert deck.cards[-1].value == 13
