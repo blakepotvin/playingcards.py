@@ -1,8 +1,10 @@
 import random
 from . import card
+
+
 class Deck():
-    
-    def __init__(self, deck:list = None) -> None:
+
+    def __init__(self, deck: list = None) -> None:
         if deck is not None and self.__validate_initial_deck(deck):
             self.cards = deck
         else:
@@ -13,13 +15,14 @@ class Deck():
     def __generate_deck(self) -> list:
         deck = []
         for suit in range(4):
-            deck.extend(card.Card(value=value, suit=suit) for value in range(1,14))
+            deck.extend(card.Card(value=value, suit=suit)
+                        for value in range(1, 14))
         return deck
-    
+
     def __validate_initial_deck(self, deck) -> bool:
         return all(isinstance(card, card.Card) for card in deck)
 
-    def draw_card(self, value:int=None, suit:int=None) -> card.Card:
+    def draw_card(self, value: int = None, suit: int = None) -> card.Card:
         if self.remaining == 0:
             raise MaxCardsDrawn
         if value is None and suit is None:
@@ -43,11 +46,12 @@ class Deck():
     def __generate_card_values(self):
         valid = False
         while not valid:
-            suit = random.randint(0,3)
-            value = random.randint(1,13)
+            suit = random.randint(0, 3)
+            value = random.randint(1, 13)
             if value not in self.drawn_cards[suit]:
                 valid = True
         return value, suit
+
 
 class MaxCardsDrawn(Exception):
     pass
