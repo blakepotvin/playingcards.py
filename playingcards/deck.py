@@ -15,7 +15,7 @@ class Deck():
     def __generate_deck(self) -> list:
         deck = []
         for suit in range(4):
-            deck.extend(card.Card(value=value, suit=suit)
+            deck.extend(card.Card(value=value, suit=suit, deck=self)
                         for value in range(1, 14))
         return deck
 
