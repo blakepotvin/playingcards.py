@@ -33,7 +33,16 @@ class Deck():
 
     def shuffle(self) -> None:
         random.shuffle(self.cards)
+    
+    def __len__(self) -> int:
+        return len(self.cards)
+    
+    def __str__(self) -> str:
+        return ", ".join(str(card) for card in self.cards)
 
+    def __repr__(self) -> str:
+        return self.__str__()
+    
 
 class MaxCardsDrawn(Exception):
     pass
