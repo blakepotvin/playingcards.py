@@ -1,8 +1,9 @@
 import random
 from . import card
+from . import cardcollection
 
 
-class Deck():
+class Deck(cardcollection.CardCollection):
 
     def __init__(self, deck: list = None) -> None:
         if deck is not None and self.__validate_initial_deck(deck):
@@ -11,6 +12,7 @@ class Deck():
             self.cards = self.__generate_deck()
         self.drawn = 0
         self.remaining = 52
+        super().__init__(cards=self.cards, maximum=52, ordered=True)
 
     def __generate_deck(self) -> list:
         deck = []
@@ -33,16 +35,17 @@ class Deck():
 
     def shuffle(self) -> None:
         random.shuffle(self.cards)
-    
+        self.ordered = False
+
     def __len__(self) -> int:
         return len(self.cards)
-    
+
     def __str__(self) -> str:
         return ", ".join(str(card) for card in self.cards)
 
     def __repr__(self) -> str:
         return self.__str__()
-    
+
 
 class MaxCardsDrawn(Exception):
     pass
