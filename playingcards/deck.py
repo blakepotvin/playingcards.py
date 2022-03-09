@@ -1,44 +1,57 @@
 import random
 from . import card
-class Deck():
-    
-    def __init__(self, seed=None) -> None:
-        self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
-        self.cards = []
+from . import cardcollection
+
+
+class Deck(cardcollection.CardCollection):
+
+    def __init__(self, deck: list = None) -> None:
+        if deck is not None and self.__validate_initial_deck(deck):
+            self.cards = deck
+        else:
+            self.cards = self.__generate_deck()
         self.drawn = 0
         self.remaining = 52
-        if seed is not None:
-            random.seed(seed)
+        super().__init__(cards=self.cards, maximum=52, ordered=True)
 
-    def draw_card(self, value:int=None, suit:int=None) -> card.Card:
-        if self.remaining == 0:
+    def __generate_deck(self) -> list:
+        deck = []
+        for suit in range(4):
+            deck.extend(card.Card(value=value, suit=suit, deck=self)
+                        for value in range(1, 14))
+        return deck
+
+    def __validate_initial_deck(self, deck) -> bool:
+        return all(isinstance(card, card.Card) for card in deck)
+
+    def draw_card(self) -> card.Card:
+        if len(self.cards):
+            drawn_card = self.cards.pop()
+        else:
             raise MaxCardsDrawn
-        if value is None and suit is None:
-            value, suit = self.__generate_card_values()
-        elif not 1 <= value <= 13 and not 1 <= suit <= 3:
-            raise card.InvalidCardParameters
-        elif value in self.drawn_cards[suit]:
-            raise card.InvalidCardParameters
         self.drawn += 1
         self.remaining -= 1
-        # draw card and append
-        drawn_card = card.Card(value=value, suit=suit, deck=self)
-        self.cards.append(drawn_card)
-        self.drawn_cards[drawn_card.suit].append(drawn_card.value)
         return drawn_card
 
-    def shuffle(self) -> None:
-        self.cards = []
-        self.drawn_cards = {0: [], 1: [], 2: [], 3: []}
+    def draw_n(self, n) -> cardcollection.CardCollection:
+        if len(self.cards) <= n-1:
+            raise MaxCardsDrawn(
+                f"Asked to draw {n} cards but there is only {len(self.cards)} left in deck")
+        drawn_cards = self.cards[:n]
+        self.cards = self.cards[n:]
+        self.drawn += n
+        self.remaining -= n
+        return cardcollection.CardCollection(drawn_cards)
 
-    def __generate_card_values(self):
-        valid = False
-        while not valid:
-            suit = random.randint(0,3)
-            value = random.randint(1,13)
-            if value not in self.drawn_cards[suit]:
-                valid = True
-        return value, suit
+    def __len__(self) -> int:
+        return len(self.cards)
+
+    def __str__(self) -> str:
+        return ", ".join(str(card) for card in self.cards)
+
+    def __repr__(self) -> str:
+        return self.__str__()
+
 
 class MaxCardsDrawn(Exception):
     pass
