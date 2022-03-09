@@ -1,4 +1,5 @@
 from playingcards import Deck
+from playingcards import CardCollection
 from random import seed
 
 seed("xyz")
@@ -50,3 +51,10 @@ def test_order_cards():
     deck.order_cards()
     assert deck.cards[0].value == 1
     assert deck.cards[-1].value == 13
+
+def test_draw_n():
+    drawn_cards = deck.draw_n(3)
+    assert len(drawn_cards) == 3
+    assert deck.drawn == 4
+    assert deck.remaining == 48
+    assert isinstance(drawn_cards, CardCollection)
