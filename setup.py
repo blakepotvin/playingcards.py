@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="playingcards.py",
-    version="1.0.1",
+    version="1.1.1",
     description="An Advanced Python Playing Card Module that makes creating playing card games simple and easy!",
     long_description=README,
     long_description_content_type="text/markdown",
