@@ -33,6 +33,15 @@ class Deck(cardcollection.CardCollection):
         self.remaining -= 1
         return drawn_card
 
+    def draw_n(self, n) -> cardcollection.CardCollection:
+        if len(self.cards) <= n-1:
+            raise MaxCardsDrawn(f"Asked to draw {n} cards but there is only {len(self.cards)} left in deck")
+        drawn_cards = self.cards[:n]
+        self.cards = self.cards[n:]
+        self.drawn += n
+        self.remaining -= n
+        return cardcollection.CardCollection(drawn_cards)
+
     def shuffle(self) -> None:
         random.shuffle(self.cards)
         self.ordered = False
