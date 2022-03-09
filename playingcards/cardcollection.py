@@ -11,7 +11,7 @@ class CardCollection:
         self.ordered = ordered
     
     def add_cards(self, cards, position, random: bool = False):
-        if self.__maximum is not None and len(self.cards) + len(cards) > self.__maximum:
+        if self.maximum is not None and len(self.cards) + len(cards) > self.__maximum:
             raise MaxCardsReached
         if not random:
             self.cards.insert(position, *cards)
@@ -20,7 +20,7 @@ class CardCollection:
             self.cards.insert(random_position, *cards)
         self.ordered = False
     
-    def remove_cards(self, position):
+    def remove_card(self, position):
         self.cards.pop(position)
         
     def order_cards(self):
