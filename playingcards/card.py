@@ -40,7 +40,7 @@ class Card:
         """
         Creates an ASCII image of the playing card object.
         """
-        suit_emojis = ["♠","♣","♥","♦"]
+        suit_emojis = ["♠", "♣", "♥", "♦"]
         suit = suit_emojis[self.suit]
         rank = str(self.rank)[0]
         return f"*- - -*\n|{suit}    |\n|  {rank}  |\n|   {suit} |\n*- - -*"
