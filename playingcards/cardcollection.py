@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, shuffle
 from . import card
 
 class MaxCardsReached(Exception):
@@ -27,6 +27,10 @@ class CardCollection:
         if not self.ordered:
             self.cards.sort()
             self.ordered = True
+    
+    def shuffle(self) -> None:
+        shuffle(self.cards)
+        self.ordered = False
 
     def __str__(self) -> str:
         return ", ".join(str(card) for card in self.cards)
