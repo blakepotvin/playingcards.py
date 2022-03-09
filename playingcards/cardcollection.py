@@ -1,4 +1,4 @@
-import random
+from random import randint
 from . import card
 
 class MaxCardsReached(Exception):
@@ -16,7 +16,7 @@ class CardCollection:
         if not random:
             self.cards.insert(position, *cards)
         else:
-            random_position = random.randint(0, len(self.cards))
+            random_position = randint(0, len(self.cards))
             self.cards.insert(random_position, *cards)
         self.ordered = False
     
